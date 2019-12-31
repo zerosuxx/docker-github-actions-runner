@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  actions-runner:
+    build:
+      context: .
+      image: zerosuxx/github-actions-runner:latest
+    environment: 
+      REPOSITORY_URL: ${REPOSITORY_URL}
+      RUNNER_TOKEN: ${RUNNER_TOKEN}
+    user: '1000'
