@@ -6,6 +6,5 @@ services:
     build:
       context: .
     environment: 
-      REPOSITORY_URL: ${REPOSITORY_URL}
+      RUNNER_REPOSITORY_URL: ${RUNNER_REPOSITORY_URL}
       RUNNER_TOKEN: ${RUNNER_TOKEN}
-    user: '1000'
