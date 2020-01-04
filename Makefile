@@ -1,3 +1,5 @@
+.PHONY: test
+
 help: ##Show this help
 	@echo "Targets:"
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' -e 's/:.*#/: #/'
@@ -27,5 +29,18 @@ restart: ##Down and up containers
 sh: ##Connect to new container shell
 	docker-compose run --rm --entrypoint /bin/bash actions-runner
 
+sh-root: ##Connect to new container shell as root user
+	docker-compose run --rm --entrypoint /bin/bash --user root actions-runner
+
 ssh: ##Connect to existing container shell
 	docker-compose exec actions-runner bash
+
+test: ##Run tests in container
+	docker-compose run \
+    	--rm \
+    	--entrypoint /bin/bash \
+    	-v $(PWD)/test/test.sh:/test.sh \
+    	-v $(PWD)/test/mock-config.sh:/actions-runner/config.sh \
+    	-v $(PWD)/test/mock-run.sh:/actions-runner/run.sh \
+    	actions-runner \
+    	-c "bash /test.sh"
