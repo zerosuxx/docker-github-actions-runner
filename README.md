@@ -1,8 +1,15 @@
 # GitHub Actions Runner Docker images
 
-![Docker Pulls](https://img.shields.io/docker/pulls/zerosuxx/github-actions-runner) ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/zerosuxx/github-actions-runner)
+![Docker Pulls](https://img.shields.io/docker/pulls/zerosuxx/github-actions-runner) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/zerosuxx/docker-github-actions-runner/Build Test and Push)
 
 `zerosuxx/github-actions-runner:latest` is image that can be used to run GitHub Runner in container.
+
+based on `ubuntu:18.04` image
+pre installed apps:
+ - `curl`
+ - `git`
+ - `docker`
+ - `docker-compose`
 
 ## Usage with docker
 
@@ -18,9 +25,9 @@ The following environment variables allows you to control the configuration para
 
 | Name | Description | Default value |
 |------|---------------|-------------|
-| RUNNER_REPOSITORY_URL | The runner will be linked to this repository URL | Required |
-| RUNNER_TOKEN | Access Token provided by GitHub | Required
-| RUNNER_WORK_DIRECTORY | Runner's work directory | `"_work"`
-| RUNNER_NAME | Name of the runner displayed in the GitHub UI | Hostname of the container
+| `RUNNER_REPOSITORY_URL` | The runner will be linked to this repository URL | *Required* |
+| `RUNNER_TOKEN` | Access Token provided by GitHub | *Required* |
+| `RUNNER_WORK_DIRECTORY` | Runner's work directory | `"_work"` |
+| `RUNNER_NAME` | Name of the runner displayed in the GitHub UI | `Hostname of the container` |
 
 https://help.github.com/en/actions/automating-your-workflow-with-github-actions/adding-self-hosted-runners

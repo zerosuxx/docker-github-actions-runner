@@ -1,0 +1,25 @@
+name: Build Test and Push
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      COMPOSE_DOCKER_CLI_BUILD: 1
+      DOCKER_BUILDKIT: 1
+      RUNNER_REPOSITORY_URL: "https://github.com/zerosuxx/docker-github-actions-runner"
+      RUNNER_TOKEN: "token"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image with specific Runner Version
+      if: startsWith(github.ref, 'refs/tags')
+      run: docker-compose build --build-arg RUNNER_VERSION=${GITHUB_REF##*/}
+    - name: Build the Docker image
+      run: docker-compose build
+    - name: Run tests in container
+      run: make test
+    - name: Login To DockerHub Registry
+      run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+    - name: Push Docker image to DockerHub Registry
+      run: docker-compose push
