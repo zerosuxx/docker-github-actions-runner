@@ -14,10 +14,10 @@ if [ -z "$RUNNER_WORK_DIRECTORY" ]; then
 	export RUNNER_WORK_DIRECTORY="_work"
 fi
 
-./config.sh \
+bash ./config.sh \
     --url ${RUNNER_REPOSITORY_URL} \
     --token ${RUNNER_TOKEN} \
     --name ${RUNNER_NAME} \
     --work ${RUNNER_WORK_DIRECTORY}
 
-./run.sh
+bash ./run.sh
