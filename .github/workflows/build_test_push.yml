@@ -2,25 +2,36 @@ name: Build Test and Push
 
 on: push
 
+env:
+  DOCKER_BUILDKIT: 1
+  RUNNER_REPOSITORY_URL: "https://github.com/zerosuxx/docker-github-actions-runner"
+  RUNNER_TOKEN: "token"
+
 jobs:
-  docker:
+  latestVersion:
+    if: endsWith(github.ref, 'master')
     runs-on: ubuntu-18.04
-    env:
-      COMPOSE_DOCKER_CLI_BUILD: 1
-      DOCKER_BUILDKIT: 1
-      RUNNER_REPOSITORY_URL: "https://github.com/zerosuxx/docker-github-actions-runner"
-      RUNNER_TOKEN: "token"
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image with specific Runner Version
-      if: startsWith(github.ref, 'refs/tags')
-      run: docker-compose build --build-arg RUNNER_VERSION=${GITHUB_REF##*/}
     - name: Build the Docker image
-      if: endsWith(github.ref, 'master')
-      run: docker-compose build
+      run: docker build -t zerosuxx/github-actions-runner:latest --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from zerosuxx/github-actions-runner:latest .
     - name: Run tests in container
       run: make test
     - name: Login To DockerHub Registry
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
     - name: Push Docker image to DockerHub Registry
-      run: docker-compose push
+      run: docker push zerosuxx/github-actions-runner:latest
+
+  specificVersion:
+    if: startsWith(github.ref, 'refs/tags')
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image with specific Runner Version
+      run: docker build -t zerosuxx/github-actions-runner:${GITHUB_REF##*/} --build-arg RUNNER_VERSION=${GITHUB_REF##*/} .
+    - name: Run tests in container
+      run: make test
+    - name: Login To DockerHub Registry
+      run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+    - name: Push Docker image to DockerHub Registry
+      run: docker push zerosuxx/github-actions-runner:${GITHUB_REF##*/}
