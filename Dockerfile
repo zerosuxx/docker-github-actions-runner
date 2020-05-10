@@ -2,8 +2,8 @@ FROM ubuntu:18.04
 
 LABEL maintainer="zerosuxx@gmail.com"
 
-ARG RUNNER_VERSION="2.163.1"
-ARG DOCKER_COMPOSE_VERSION="1.25.0"
+ARG RUNNER_VERSION="2.169.1"
+ARG DOCKER_COMPOSE_VERSION="1.25.5"
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
@@ -13,8 +13,9 @@ RUN useradd github
 
 RUN apt-get update \
     && apt-get install -y \
-        curl \
-        git
+       curl \
+       git \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN curl -O https://githubassets.azureedge.net/runners/${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
