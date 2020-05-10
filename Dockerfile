@@ -17,7 +17,7 @@ RUN apt-get update \
        git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -O  https://github.com/actions/runner/releases/download/${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
+RUN curl -L -O https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && rm -f ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && chown -R github:github . \
