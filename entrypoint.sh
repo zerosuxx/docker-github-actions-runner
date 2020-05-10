@@ -20,7 +20,8 @@ bash ./config.sh \
     --url ${RUNNER_REPOSITORY_URL} \
     --token ${RUNNER_TOKEN} \
     --name ${RUNNER_NAME} \
-    --work ${RUNNER_WORK_DIRECTORY}
-    --unattended
+    --work ${RUNNER_WORK_DIRECTORY} \
+    --unattended \
+    --replace
 
 bash ./run.sh
