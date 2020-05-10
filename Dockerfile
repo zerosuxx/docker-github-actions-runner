@@ -9,8 +9,6 @@ ENV DEBIAN_FRONTEND="noninteractive"
 
 WORKDIR /actions-runner
 
-RUN useradd github
-
 RUN apt-get update \
     && apt-get install -y \
        curl \
@@ -24,8 +22,7 @@ RUN curl -fLO https://github.com/actions/runner/releases/download/v${RUNNER_VERS
     && ./bin/installdependencies.sh
 
 RUN curl -fsSL https://get.docker.com -o get-docker.sh \
-    && sh get-docker.sh \
-    && usermod -aG docker github
+    && sh get-docker.sh
 
 RUN curl -fL "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose
@@ -35,7 +32,5 @@ RUN apt-get clean \
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-
-USER github
 
 ENTRYPOINT ["/entrypoint.sh"]
