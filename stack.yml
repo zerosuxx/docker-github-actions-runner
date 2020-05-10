@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  actions-runner:
+    image: zerosuxx/github-actions-runner:latest
+    environment: 
+      RUNNER_REPOSITORY_URL: ${RUNNER_REPOSITORY_URL}
+      RUNNER_TOKEN: ${RUNNER_TOKEN}
