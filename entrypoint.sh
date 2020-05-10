@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+export RUNNER_ALLOW_RUNASROOT=1
+
 if [ -z "$RUNNER_REPOSITORY_URL" ] || [ -z "$RUNNER_TOKEN" ]; then
     echo "RUNNER_REPOSITORY_URL and RUNNER_TOKEN cannot be empty"
     exit 1
@@ -19,5 +21,6 @@ bash ./config.sh \
     --token ${RUNNER_TOKEN} \
     --name ${RUNNER_NAME} \
     --work ${RUNNER_WORK_DIRECTORY}
+    --unattended
 
 bash ./run.sh
