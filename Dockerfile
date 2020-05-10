@@ -18,7 +18,6 @@ RUN apt-get update \
 RUN curl -fLO https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && rm -f ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
-    && chown -R github:github . \
     && ./bin/installdependencies.sh
 
 RUN curl -fsSL https://get.docker.com -o get-docker.sh \
