@@ -9,11 +9,11 @@ if [ -z "$RUNNER_REPOSITORY_URL" ] || [ -z "$RUNNER_TOKEN" ]; then
 fi
 
 if [ -z "$RUNNER_NAME" ]; then
-	export RUNNER_NAME="${HOSTNAME}"
+    export RUNNER_NAME="${HOSTNAME}"
 fi
 
 if [ -z "$RUNNER_WORK_DIRECTORY" ]; then
-	export RUNNER_WORK_DIRECTORY="_work"
+    export RUNNER_WORK_DIRECTORY="_work"
 fi
 
 bash ./config.sh \
