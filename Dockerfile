@@ -17,7 +17,7 @@ RUN apt-get update \
        git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -L -O https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
+RUN curl -fLO https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && rm -f ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && chown -R github:github . \
@@ -27,7 +27,7 @@ RUN curl -fsSL https://get.docker.com -o get-docker.sh \
     && sh get-docker.sh \
     && usermod -aG docker github
 
-RUN curl -L "https://dl.bintray.com/docker-compose/bump-${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
+RUN curl -fL "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose
 
 RUN apt-get clean \
