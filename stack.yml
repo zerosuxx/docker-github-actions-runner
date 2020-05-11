@@ -8,3 +8,4 @@ services:
     environment: 
       RUNNER_REPOSITORY_URL: ${RUNNER_REPOSITORY_URL}
       RUNNER_TOKEN: ${RUNNER_TOKEN}
+      RUNNER_NAME: ${RUNNER_NAME}
