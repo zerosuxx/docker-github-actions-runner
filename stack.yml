@@ -5,7 +5,9 @@ services:
     image: zerosuxx/github-actions-runner:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /actions-runner/_build:/actions-runner/_build
     environment: 
       RUNNER_REPOSITORY_URL: ${RUNNER_REPOSITORY_URL}
       RUNNER_TOKEN: ${RUNNER_TOKEN}
       RUNNER_NAME: ${RUNNER_NAME}
+      RUNNER_WORKING_DIRECTORY: '_build'
