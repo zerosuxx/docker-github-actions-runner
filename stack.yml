@@ -7,7 +7,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /actions-runner/_build:/actions-runner/_build
     environment: 
-      REPOSITORY: ${RUNNER_REPOSITORY_URL}
+      REPOSITORY: ${REPOSITORY}
       ACCESS_TOKEN: ${ACCESS_TOKEN}
       RUNNER_NAME: ${RUNNER_NAME}
       RUNNER_WORKING_DIRECTORY: '_build'
