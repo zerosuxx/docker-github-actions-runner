@@ -4,7 +4,7 @@ on: push
 
 env:
   DOCKER_BUILDKIT: 1
-  RUNNER_REPOSITORY_URL: "https://github.com/zerosuxx/docker-github-actions-runner"
+  REPOSITORY: "zerosuxx/docker-github-actions-runner"
   RUNNER_TOKEN: "token"
 
 jobs:

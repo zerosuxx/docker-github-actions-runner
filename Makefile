@@ -11,6 +11,9 @@ pull: ##Pull images
 build: ##Build images
 	docker-compose build --no-cache
 
+env: ##Create .env file from .env.example
+	cp .env.example .env
+
 up: ##Up containers
 	docker-compose up --build
 

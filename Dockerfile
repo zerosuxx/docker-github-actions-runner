@@ -13,6 +13,7 @@ RUN apt-get update \
     && apt-get install -y \
        curl \
        git \
+       jq \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fLO https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \

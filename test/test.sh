@@ -23,6 +23,9 @@ assertAppInstalled $? "docker"
 docker-compose --version > /dev/null 2>&1
 assertAppInstalled $? "docker-compose"
 
+jq --version > /dev/null 2>&1
+assertAppInstalled $? "jq"
+
 #cd /actions-runner
 #result=$(bash ../entrypoint.sh)
 #echo $result
