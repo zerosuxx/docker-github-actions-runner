@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 LABEL maintainer="zerosuxx@gmail.com"
 
-ARG RUNNER_VERSION="2.273.6"
+ARG RUNNER_VERSION="2.274.2"
 ARG DOCKER_COMPOSE_VERSION="1.27.4"
 
 ENV DEBIAN_FRONTEND="noninteractive"
