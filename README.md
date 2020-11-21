@@ -8,16 +8,17 @@ based on `ubuntu:18.04` image
 pre installed apps:
  - `curl`
  - `git`
+ - `jq`
  - `docker`
  - `docker-compose`
 
 ## Usage with docker
 
-`docker run -d --rm -e "RUNNER_REPOSITORY_URL=$RUNNER_REPOSITORY_URL" -e "RUNNER_TOKEN=$RUNNER_TOKEN" zerosuxx/github-actions-runner:latest`
+`docker run -d --rm -e "REPOSITORY=$REPOSITORY" -e "RUNNER_TOKEN=$RUNNER_TOKEN" zerosuxx/github-actions-runner:latest`
 
 ## Usage with docker-compose
 
-`RUNNER_REPOSITORY_URL=$RUNNER_REPOSITORY_URL RUNNER_TOKEN=$RUNNER_TOKEN docker-compose up -d`
+`docker-compose up -d`
 
 ## Environment variables
 
@@ -25,8 +26,9 @@ The following environment variables allows you to control the configuration para
 
 | Name | Description | Default value |
 |------|---------------|-------------|
-| `RUNNER_REPOSITORY_URL` | The runner will be linked to this repository URL | *Required* |
-| `RUNNER_TOKEN` | Access Token provided by GitHub | *Required* |
+| `REPOSITORY` | The runner will be linked to this repository (owner/package_name) | *Required* |
+| `ACCESS_TOKEN` | Personal Access Token provided by GitHub | *Required* |
+| `RUNNER_TOKEN` | Runner Access Token provided by GitHub | *Required* when the `ACCESS_TOKEN` is empty |
 | `RUNNER_WORK_DIRECTORY` | Runner's work directory | `"_work"` |
 | `RUNNER_NAME` | Name of the runner displayed in the GitHub UI | `Hostname of the container` |
 
