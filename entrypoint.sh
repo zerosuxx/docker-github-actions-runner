@@ -24,7 +24,7 @@ if [ -z "$RUNNER_TOKEN" ]; then
 fi
 
 bash ./config.sh \
-    --url ${RUNNER_REPOSITORY_URL} \
+    --url "https://github.com/${REPOSITORY}" \
     --token ${RUNNER_TOKEN} \
     --name ${RUNNER_NAME} \
     --work ${RUNNER_WORK_DIRECTORY} \
