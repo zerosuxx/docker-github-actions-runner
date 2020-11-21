@@ -3,7 +3,7 @@ set -e
 
 export RUNNER_ALLOW_RUNASROOT=1
 
-if [ ! -z "$REPOSITORY" ]; then
+if [ -z "$REPOSITORY" ]; then
     echo "REPOSITORY cannot be empty!"
     exit 1
 fi
