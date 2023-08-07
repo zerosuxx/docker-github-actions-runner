@@ -1,6 +1,6 @@
 # GitHub Actions Runner Docker images
 
-![Docker Pulls](https://img.shields.io/docker/pulls/zerosuxx/github-actions-runner) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/zerosuxx/docker-github-actions-runner/Build%20Test%20and%20Push)
+![Docker Pulls](https://img.shields.io/docker/pulls/zerosuxx/github-actions-runner) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/zerosuxx/docker-github-actions-runner/build_test_push.yml?branch=master)
 
 `zerosuxx/github-actions-runner:latest` is image that can be used to run GitHub Runner in container.
 
